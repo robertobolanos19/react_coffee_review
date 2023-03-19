@@ -10,12 +10,30 @@ const App = () =>
 {
   const [shops,updateShops]=useState([])
   const [showAll,setShowAll]=useState(true)
-  const [newDetails,setDetails]=useState({
-    name:"",
-    username:"",
-    description:"",
-    stars:1,
-  })
+  // const [newDetails,setDetails]=useState({
+  //   name:"",
+  //   username:"",
+  //   description:"",
+  //   stars:1,
+  // })
+  const [nameInputField,setNameInputField]=useState('')
+
+  const handleNameInputChange=(e)=>{
+    setNameInputField(e.target.value)
+  }
+
+  const [userNameInputField,setUsernameInputField]=useState('')
+  const handleUsernameInputChange=(e)=>{
+    setUsernameInputField(e.target.value)
+  }
+
+  const [descriptionInputField,setDescriptionInputField]=useState('')
+
+  const handleDescriptionInputChange=(e)=>{
+    setDescriptionInputField(e.target.value)
+  }
+
+
 
   useEffect(()=>{
     shopServices.getAll()
@@ -32,34 +50,30 @@ const App = () =>
   //*values into shops since updateShops(initialShops) is used to update the current value
 
   //*
-  const handleChange= (e)=>{
-    //console.log(e.target)
-    const {name,value}=e.target
-    // const name = e.target.name
-    // const value = e.target.value
-    // const infoObject = {name,value}
-    // console.log(infoObject)
-    setDetails((previousValue)=>{
-      return {...previousValue, [name]:value}
-    })
-  }
 
   const handleSubmit = (e)=>{
     e.preventDefault()
-    console.log(newDetails)
-
-    if(shops.map((s)=>s.username.toLowerCase()).includes(newDetails.username.toLowerCase())
-      &&shops.map((s)=>s.name.toLowerCase()).includes(newDetails.name.toLowerCase()))
+   // console.log(newDetails)
+   const shopObject = {
+      name:nameInputField,
+      username:userNameInputField,
+      description:descriptionInputField,
+      stars:1
+   }
+    if(shops.map((s)=>s.name).includes(nameInputField)
+      &&shops.map((s)=>s.username).includes(userNameInputField))
     {
-      window.confirm(`${newDetails.username} has already left a review for ${newDetails.name}, replace old review?`)
+      window.confirm(`${userNameInputField} has already left a review for ${nameInputField}, replace old review?`)
       &&
       shopServices
-      .update(shops.filter(shop=>shop.username === newDetails.username)[0].id,newDetails)
-      .then(response=>{
+      .update(shops.filter(shop=>shop.username === userNameInputField)[0].id, shopObject)
+      .then(response => {
         shopServices.getAll()
-        .then(response=>{
+        .then(response => {
           updateShops(response)
-          setDetails({})
+          setNameInputField('')
+          setUsernameInputField('')
+          setDescriptionInputField('')
         })
       })
       .catch(error=>{
@@ -67,19 +81,69 @@ const App = () =>
       })
       return
     }
-
-    shopServices.create(newDetails)
-    .then(returnedDetails=>{
-      console.log(returnedDetails)
-      updateShops(shops.concat(returnedDetails))
-      setDetails({
-        name:"",
-        username:"",
-        description:"",
-        stars:1
-      })
+    else if(nameInputField===""||userNameInputField===""||descriptionInputField==="")
+    {
+      alert('Must fill all inputs')
+      return
+    }
+    shopServices.create(shopObject)
+    .then(returnedShop=>{
+      updateShops(shops.concat(returnedShop))
+      setNameInputField('')
+      setUsernameInputField('')
+      setDescriptionInputField('')
     })
+    // if(shops.map((s)=>s.username).includes(newDetails.username)
+    //   &&shops.map((s)=>s.name.toLowerCase()).includes(newDetails.name.toLowerCase()))
+    // {
+    //   window.confirm(`${newDetails.username} has already left a review for ${newDetails.name}, replace old review?`)
+    //   &&
+    //   shopServices
+    //   .update(shops.filter(shop=>shop.username === newDetails.username)[0].id,newDetails)
+    //   .then(response=>{
+    //     shopServices.getAll()
+    //     .then(response=>{
+    //     console.log(response)
+    //       updateShops(response)
+    //       //setDetails({name:"",username:"",description:"",stars:""})
+    //     })
+    //   })
+    //   .catch(error=>{
+    //     console.log(error)
+    //   })
+    //   return
+    // }
+    // else if(newDetails.name===""||newDetails.description===""||newDetails.username==="")
+    // {
+    //   alert('Must fill all inputs')
+    //   return
+    // }
+
+    // shopServices.create(newDetails)
+    // .then(returnedDetails=>{
+    //   console.log(returnedDetails)
+    //   updateShops(shops.concat(returnedDetails))
+    //   setDetails({
+    //     name:"",
+    //     username:"",
+    //     description:"",
+    //     stars:1,
+    //   })
+    //   console.log(setDetails)
+    // })
   }
+
+  // const handleChange= (e)=>{
+  //   console.log(e.target.value)
+  //   // const {name,value}=e.target
+  //   // // const name = e.target.name
+  //   // // const value = e.target.value
+  //   // // const infoObject = {name,value}
+  //   // // console.log(infoObject)
+  //   // setDetails((previousValue)=>{
+  //   //   return {...previousValue, [name]:value}
+  //   // })
+  // }
 
   return (
     <>
@@ -89,11 +153,28 @@ const App = () =>
       {shopsToShow.map(shop => <Shop key={shop.id} shop={shop}/>)}
     </ul>
     <Form
-    handleChange={handleChange}
+    handleNameInputChange={handleNameInputChange}
+    nameVal={nameInputField}
+    handleDescriptionInputChange={handleDescriptionInputChange}
+    descVal={descriptionInputField}
+    handleUsernameInputChange={handleUsernameInputChange}
+    usernameVal={userNameInputField}
+    // handleChange={handleChange}
     handleSubmit={handleSubmit}
     />
     </>
   )
+
+  /*
+    nameInputValue={nameInputField}
+    handleNameInputChange={handleNameInputChange}
+
+    userNameInputValue={userNameInputField}
+    handleUsernameInputChange={handleUsernameInputChange}
+
+    descriptionInputValue={descriptionInputField}
+    handleDescriptionInputChange={handleDescriptionInputChange}
+  */
 
 
 

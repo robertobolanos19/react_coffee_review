@@ -22,46 +22,18 @@
       "username": "jack"
     },
     {
-      "name": "NewShop",
-      "username": "billy",
-      "description": "testing2\n",
+      "name": "t",
+      "username": "1",
+      "description": "321",
       "stars": 1,
       "id": 4
     },
     {
-      "name": "coffee",
-      "username": "testuser",
-      "description": "desc",
+      "name": "r",
+      "username": "12",
+      "description": "1231223",
       "stars": 1,
       "id": 5
-    },
-    {
-      "name": "Black coffee",
-      "username": "thatguy",
-      "description": "123",
-      "stars": 1,
-      "id": 6
-    },
-    {
-      "name": "Black",
-      "username": "gob",
-      "description": "123",
-      "stars": 1,
-      "id": 7
-    },
-    {
-      "name": "test",
-      "username": "123",
-      "description": "112",
-      "stars": 1,
-      "id": 8
-    },
-    {
-      "name": "shop",
-      "username": "test123",
-      "description": "hello",
-      "stars": 1,
-      "id": 9
     }
   ]
 }
