@@ -1,0 +1,67 @@
+{
+  "coffeeShops": [
+    {
+      "name": "Argoro",
+      "username": "tommy",
+      "description": "desc\n",
+      "star": 1,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Black Cat",
+      "stars": 3,
+      "wifi": false,
+      "username": "bob"
+    },
+    {
+      "id": 3,
+      "name": "Starbucks",
+      "stars": 4,
+      "wifi": true,
+      "username": "jack"
+    },
+    {
+      "name": "NewShop",
+      "username": "billy",
+      "description": "testing2\n",
+      "stars": 1,
+      "id": 4
+    },
+    {
+      "name": "coffee",
+      "username": "testuser",
+      "description": "desc",
+      "stars": 1,
+      "id": 5
+    },
+    {
+      "name": "Black coffee",
+      "username": "thatguy",
+      "description": "123",
+      "stars": 1,
+      "id": 6
+    },
+    {
+      "name": "Black",
+      "username": "gob",
+      "description": "123",
+      "stars": 1,
+      "id": 7
+    },
+    {
+      "name": "test",
+      "username": "123",
+      "description": "112",
+      "stars": 1,
+      "id": 8
+    },
+    {
+      "name": "shop",
+      "username": "test123",
+      "description": "hello",
+      "stars": 1,
+      "id": 9
+    }
+  ]
+}
