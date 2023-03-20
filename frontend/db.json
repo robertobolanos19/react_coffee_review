@@ -8,32 +8,11 @@
       "id": 1
     },
     {
-      "id": 2,
       "name": "Black Cat",
-      "stars": 3,
-      "wifi": false,
-      "username": "bob"
-    },
-    {
-      "id": 3,
-      "name": "Starbucks",
-      "stars": 4,
-      "wifi": true,
-      "username": "jack"
-    },
-    {
-      "name": "t",
-      "username": "1",
-      "description": "321",
-      "stars": 1,
-      "id": 4
-    },
-    {
-      "name": "r",
-      "username": "12",
-      "description": "1231223",
-      "stars": 1,
-      "id": 5
+      "username": "testingUser",
+      "description": "good",
+      "stars": "3",
+      "id": 2
     }
   ]
 }
