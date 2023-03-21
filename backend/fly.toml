@@ -1,6 +1,6 @@
-# fly.toml file generated for wispy-feather-8979 on 2023-03-19T14:44:48-05:00
+# fly.toml file generated for winter-snow-167 on 2023-03-20T00:39:25-05:00
 
-app = "wispy-feather-8979"
+app = "winter-snow-167"
 kill_signal = "SIGINT"
 kill_timeout = 5
 primary_region = "dfw"

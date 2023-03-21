@@ -4,6 +4,7 @@ const cors = require('cors')
 require('dotenv').config()
 
 const Shop = require('./models/shops.js')
+const { response, request } = require('express')
 
 const requestLogger = (request, response, next) => {
     console.log('Method:', request.method)
@@ -22,15 +23,24 @@ app.use(express.json())
 app.use(requestLogger)
 app.use(express.static('build'))
 
-let shops=
-[
+let shops=[]
 
-]
+console.log(`let shops=[] has the value of ${shops}`)
 
 app.get('/api/shops',(request,response)=>{
     Shop.find({}).then(shops=>{
         response.json(shops)
     })
+})
+
+app.get('/api/shops/:id', (request, response) => {
+    const id = Number(request.params.id)
+    const shop = shops.find(shop => shop.id === id)
+    if (shop) {
+        response.json(shop)
+      } else {
+        response.status(404).end()
+      }
 })
 
 app.post('/api/shops', (request, response) => {
@@ -58,6 +68,14 @@ const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
+
+
+
+
+
+
+
+
 
 // //*used to get the info from .env so we can use it globally
 // require('dotenv').config()
