@@ -1,1 +1,1 @@
-GET http://localhost:3001//coffeeShops
+GET http://localhost:8080/api/shops

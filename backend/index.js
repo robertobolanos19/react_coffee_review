@@ -1,9 +1,10 @@
 const express = require('express')
 const app = express()
+const mongoose = require('mongoose')
 const cors = require('cors')
 require('dotenv').config()
 
-const Shop = require('./models/shops.js')
+const Shop = require('./models/shops')
 const { response, request } = require('express')
 
 const requestLogger = (request, response, next) => {
@@ -61,6 +62,14 @@ app.post('/api/shops', (request, response) => {
         response.json(savedShop)
     })
 })
+
+app.delete('/api/shops/:id', (request, response) => {
+    const id = Number(request.params.id)
+    shops = shops.filter(shop => shop.id !== id)
+  
+    response.status(204).end()
+  })
+  
 
 app.use(unknownEndpoint)
 
