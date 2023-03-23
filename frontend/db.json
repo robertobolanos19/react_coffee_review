@@ -1,32 +1,19 @@
 {
-  "shops": [
+  "posts": [
     {
-      "name": "Argoro",
-      "username": "tommy",
-      "description": "desc\n",
-      "star": 1,
-      "id": 1
-    },
-    {
-      "name": "Black Cat",
-      "username": "testingUser",
-      "description": "good",
-      "stars": "3",
-      "id": 2
-    },
-    {
-      "name": "test",
-      "username": "123",
-      "description": "test",
-      "stars": "5",
-      "id": 3
-    },
-    {
-      "name": "test",
-      "username": "12",
-      "description": "123",
-      "stars": "4",
-      "id": 4
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
     }
-  ]
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
 }

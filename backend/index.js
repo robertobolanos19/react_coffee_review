@@ -41,21 +41,23 @@ app.get('/api/shops/:id', (request, response) => {
         response.json(shop)
       } else {
         response.status(404).end()
+        console.log('Something went wrong')
       }
 })
 
 app.post('/api/shops', (request, response) => {
     const body = request.body
   
-    if (body.content === undefined) {
+    console.log(body)
+    if (body.name === undefined) {
       return response.status(400).json({ error: 'content missing' })
     }
   
     const shop = new Shop({
-        name:body.content,
-        username:body.content,
-        description:body.content,
-        stars:1
+        name:body.name,
+        username:body.username,
+        description:body.description,
+        stars:body.stars
     })
   
     shop.save().then(savedShop => {

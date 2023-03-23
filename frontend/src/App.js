@@ -62,7 +62,7 @@ const App = () =>
     .then(initialShops => {
       updateShops(initialShops)
     })
-  })
+  },[])
 
   
 
