@@ -26,7 +26,7 @@ app.use(express.static('build'))
 
 let shops=[]
 
-console.log(`let shops=[] has the value of ${shops}`)
+// console.log(`let shops=[] has the value of ${shops}`)
 
 app.get('/api/shops',(request,response)=>{
     Shop.find({}).then(shops=>{
@@ -65,13 +65,31 @@ app.post('/api/shops', (request, response) => {
     })
 })
 
-app.delete('/api/shops/:id', (request, response) => {
-    const id = Number(request.params.id)
-    shops = shops.filter(shop => shop.id !== id)
-  
-    response.status(204).end()
-  })
-  
+app.delete('/api/shops/:id', (request,response,next)=>{
+    Shop.findByIdAndRemove(request.params.id)
+    .then(result=>{
+        response.status(204).end()
+        console.log('deleted!')
+    })
+    .catch(error=>next(error))
+})
+
+app.put('/api/shops/:id', (request,response,next)=>{
+    const body = request.body
+
+    const shop = {
+        name:body.name,
+        username:body.username,
+        description:body.description,
+        stars:body.stars,
+    }
+
+    Shop.findByIdAndUpdate(request.params.id, shop)
+    .then(updatedShop=>{
+        response.json(updatedShop)
+    })
+    .catch(error=>next(error))
+})
 
 app.use(unknownEndpoint)
 

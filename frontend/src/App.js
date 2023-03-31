@@ -42,6 +42,7 @@ const App = () =>
     window.confirm(`Delete ${shop.name}?`)
     &&shopServices.deleteShop(shop.id)
     .then(response=>{
+      updateShops(shops.filter(s=>s.id !== shop.id))
       setNotification(`${nameInputField} has just been deleted!`)
           setNotificationType(null)
           setTimeout(()=>{
