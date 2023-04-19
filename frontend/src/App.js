@@ -1,8 +1,7 @@
 import { useState,useEffect } from 'react';
 import './App.css';
 import shopServices from "./services/shops.js"
-import StarRating from "./components/StarRating";
-//<StarRating/>
+
 import Shop from './components/Shop';
 import Form from './components/Form';
 import Notification from './components/Notification';
@@ -135,6 +134,13 @@ const App = () =>
         setTimeout(()=>{
           setNotification(null)
         },5000)
+    })
+    .catch(error=>{
+      setNotificationType('error')
+      setNotification((error.response.data.error))
+      setTimeout(()=>{
+        setNotification(null)
+      },10000)
     })
   }
 
